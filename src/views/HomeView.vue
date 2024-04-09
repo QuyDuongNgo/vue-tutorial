@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <span class="text-red-600 font-semibold">{{ count }}</span>
-    <button>Add</button>
+  <div class="w-full">
+    <Table />
   </div>
 </template>
 
 <script>
+import Table from "../components/Table.vue";
 export default {
+  components: {
+    Table,
+  },
   data() {
     return {
       count: 0,
