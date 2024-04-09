@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>{{ count }}</span>
+    <span class="text-red-600 font-semibold">{{ count }}</span>
     <button>Add</button>
   </div>
 </template>
