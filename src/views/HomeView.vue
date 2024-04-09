@@ -1,9 +1,16 @@
-<script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <span>{{ count }}</span>
+    <button>Add</button>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      count: 0,
+    };
+  },
+};
+</script>
