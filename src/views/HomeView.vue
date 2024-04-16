@@ -33,6 +33,14 @@
         Search
       </button>
     </div>
+    <div class="mb-1 float-end">
+      <button
+        class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"
+        @click="handleClear"
+      >
+        Delete All
+      </button>
+    </div>
     <Table
       :tasksList="tasks"
       :checkAll="checkAll"
@@ -60,9 +68,13 @@ export default {
   },
   watch: {
     tasks() {
+      if (this.tasks.length == 0) {
+        return (this.checkAll = false);
+      } else {
       this.checkAll = this.tasks.every((task) => {
         return task.checked;
       });
+      }
     },
   },
   methods: {
@@ -74,7 +86,7 @@ export default {
       this.name = "";
     },
     deleteProcedurt(index) {
-      this.tasks.splice(index);
+      this.tasks.splice(index, 1);
     },
     handleCopy(task) {
       this.tasks.push({
@@ -100,6 +112,9 @@ export default {
           checked: payload.index == index ? payload.checked : task.checked,
         };
       });
+    },
+    handleClear() {
+      this.tasks = this.tasks.filter((task) => !task.checked);
     },
   },
 };
