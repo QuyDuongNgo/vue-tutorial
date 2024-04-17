@@ -49,6 +49,7 @@
       @handle-copy="handleCopy"
       @hande-check-all="handleCheckedAll"
       @check-task="handleCheckTask"
+      @handle-save="handleSave"
     />
   </div>
 </template>
@@ -78,9 +79,9 @@ export default {
       if (this.tasks.length == 0) {
         return (this.checkAll = false);
       } else {
-      this.checkAll = this.tasks.every((task) => {
-        return task.checked;
-      });
+        this.checkAll = this.tasks.every((task) => {
+          return task.checked;
+        });
       }
     },
   },
@@ -122,6 +123,10 @@ export default {
     },
     handleClear() {
       this.tasks = this.tasks.filter((task) => !task.checked);
+    },
+    handleSave(data) {
+      let { item, index } = data;
+      this.tasks[index].name = item.name;
     },
   },
 };
