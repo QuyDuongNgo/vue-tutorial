@@ -36,7 +36,7 @@
               class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700"
             >
               <tr
-                v-for="(task, index) in tasksList"
+                v-for="(task, index) in filterList"
                 :key="index"
                 class="hover:bg-gray-100 dark:hover:bg-gray-700"
               >
@@ -93,6 +93,10 @@ export default {
     checkAll: {
       type: Boolean,
       default: false,
+    },
+    filterList: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {

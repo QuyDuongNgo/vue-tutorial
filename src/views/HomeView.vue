@@ -44,6 +44,7 @@
     <Table
       :tasksList="tasks"
       :checkAll="checkAll"
+      :filterList="filterList"
       @handle-delete-product="deleteProcedurt"
       @handle-copy="handleCopy"
       @hande-check-all="handleCheckedAll"
@@ -64,7 +65,13 @@ export default {
       tasks: [],
       search: "",
       checkAll: false,
+      filterTask: [],
     };
+  },
+  computed: {
+    filterList() {
+      return this.filterTask.length > 0 ? this.filterTask : this.tasks;
+    },
   },
   watch: {
     tasks() {
@@ -95,7 +102,7 @@ export default {
       });
     },
     handleSearch() {
-      this.tasks = this.tasks.filter((task) => {
+      this.filterTask = this.tasks.filter((task) => {
         return task.name.includes(this.search);
       });
     },
