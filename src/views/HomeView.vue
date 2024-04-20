@@ -38,9 +38,19 @@
         class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"
         @click="handleClear"
       >
-        Delete All
+        Reset
       </button>
     </div>
+    {{ counter }}
+    <div class="mb-1 float-end mr-2">
+      <button
+        class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"
+        @click="handleAdd"
+      >
+        Add
+      </button>
+    </div>
+    <a-button type="danger">Primary Button</a-button>
     <Table
       :tasksList="tasks"
       :checkAll="checkAll"
@@ -56,7 +66,7 @@
 
 <script>
 import Table from "../components/Table.vue";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   components: {
     Table,
@@ -92,6 +102,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["handleAdd"]),
     handleAddProduct() {
       this.tasks.push({
         checked: false,

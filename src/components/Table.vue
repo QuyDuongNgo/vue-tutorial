@@ -1,5 +1,6 @@
 <template>
   <div class="w-full flex flex-col">
+    {{ counter }}
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
       <div class="inline-block min-w-full align-middle">
         <div class="overflow-hidden">
@@ -176,6 +177,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   props: {
     tasksList: {
@@ -197,6 +199,9 @@ export default {
       isShowEdit: false,
       editIndex: null,
     };
+  },
+  computed: {
+    ...mapState(["counter"]),
   },
   methods: {
     handleDeleteProduct(index) {

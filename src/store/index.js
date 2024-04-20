@@ -8,10 +8,14 @@ const store = new Vuex.Store({
     counter: 1,
   },
   mutations: {
-    // Define your mutations here
+    ADD(state) {
+      state.counter++;
+    },
   },
   actions: {
-    // Define your actions here
+    handleAdd({ commit }) {
+      commit("ADD");
+    },
   },
   getters: {
     // Define your getters here
