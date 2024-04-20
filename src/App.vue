@@ -13,10 +13,11 @@ export default {
     DefaultLayout,
     AuthLayout,
   },
+
   computed: {
-    ...mapState(["isLoggin"]),
+    ...mapState(["isLogin"]),
     layout() {
-      return this.isLoggin ? "DefaultLayout" : "AuthLayout";
+      return this.isLogin ? "DefaultLayout" : "AuthLayout";
     },
   },
 };
