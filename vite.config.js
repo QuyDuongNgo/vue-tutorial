@@ -24,5 +24,10 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss, autoprefixer],
     },
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
   },
 });

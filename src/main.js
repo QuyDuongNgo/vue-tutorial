@@ -7,6 +7,7 @@ import "./plugins/antd.js";
 
 import "./assets/main.css";
 import "./assets/tailwind/index.css";
+import "./assets/antd/custom.less";
 
 new Vue({
   router,
