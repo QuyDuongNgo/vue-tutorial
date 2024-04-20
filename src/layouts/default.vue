@@ -1,5 +1,8 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger" class="h-full">
+  <a-layout
+    id="components-layout-demo-custom-trigger"
+    class="!h-full !min-h-screen flex flex-col"
+  >
     <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
       <div class="logo" />
       <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
