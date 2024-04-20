@@ -56,6 +56,7 @@
 
 <script>
 import Table from "../components/Table.vue";
+import { mapState } from "vuex";
 export default {
   components: {
     Table,
@@ -70,9 +71,14 @@ export default {
     };
   },
   computed: {
+    ...mapState(["counter"]),
+
     filterList() {
       return this.filterTask.length > 0 ? this.filterTask : this.tasks;
     },
+  },
+  mounted() {
+    console.log(this.counter);
   },
   watch: {
     tasks() {
