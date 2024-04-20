@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
 
 Vue.use(VueRouter);
 
@@ -13,11 +14,33 @@ const router = new VueRouter({
       path: "/login",
       name: "login",
       component: Login,
+      meta: {
+        auth: false,
+      },
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register,
+      meta: {
+        auth: false,
+      },
+    },
+    {
+      path: "/",
+      name: "home",
+      component: HomeView,
+      meta: {
+        auth: true,
+      },
     },
     {
       path: "/admin",
       name: "home",
       component: HomeView,
+      meta: {
+        auth: true,
+      },
     },
     {
       path: "/about",
@@ -28,8 +51,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
+  console.log(to);
   const loggedIn = localStorage.getItem("userToken");
-  if (!loggedIn && to.name !== "login") {
+  if (!loggedIn && to.meta.auth && to.name !== "login") {
     next({ name: "login" });
   } else next();
 });
