@@ -21,12 +21,29 @@
       </a-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <a-layout-header class="!bg-white !p-0 flex justify-between items-center">
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="() => (collapsed = !collapsed)"
         />
+        <a-dropdown class="!mr-4" :trigger="['click']">
+          <a-avatar
+            class="hover:cursor-pointer !shadow-sm !border border-2"
+            :size="48"
+            :src="authUser.image"
+          />
+          <a-menu slot="overlay">
+            <a-menu-item key="0">
+              <a href="http://www.alipay.com/">1st menu item</a>
+            </a-menu-item>
+            <a-menu-item key="1">
+              <a href="http://www.taobao.com/">2nd menu item</a>
+            </a-menu-item>
+            <a-menu-divider />
+            <a-menu-item key="3" @click="handleLogout"> Logout </a-menu-item>
+          </a-menu>
+        </a-dropdown>
       </a-layout-header>
       <a-layout-content
         :style="{
@@ -42,11 +59,22 @@
   </a-layout>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
       collapsed: false,
     };
+  },
+  computed: {
+    ...mapGetters("auth", ["authUser"]),
+  },
+  methods: {
+    ...mapActions("auth", ["logout"]),
+    async handleLogout() {
+      await this.logout();
+      this.$router.push("/login");
+    },
   },
 };
 </script>

@@ -36,11 +36,20 @@ const actions = {
       console.log(error);
     }
   },
+  logout({ commit }) {
+    localStorage.clear();
+    commit("SET_TOKEN", null);
+    commit("SET_AUTH_USER", null);
+    commit("SET_IS_LOGIN", false);
+  },
 };
 
 const getters = {
   isLogin(state) {
     return state.isLogin;
+  },
+  authUser(state) {
+    return state.authUser;
   },
 };
 
