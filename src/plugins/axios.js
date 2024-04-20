@@ -1,18 +1,29 @@
 import axios from "axios";
-import Vue from "vue";
 
 const baseURL = "https://dummyjson.com";
 
-const devInstance = createInstance();
+const axiosInstance = createInstance();
 
 function createInstance() {
   return axios.create({
     baseURL: baseURL,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.token}`,
     },
   });
 }
 
-Vue.prototype.$axios = devInstance;
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;

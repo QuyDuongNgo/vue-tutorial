@@ -14,6 +14,7 @@
 <script>
 import LoginForm from "@/components/auth/LoginForm.vue";
 import Social from "@/components/auth/Social.vue";
+import { mapActions } from "vuex";
 export default {
   name: "LoginPage",
   components: {
@@ -21,8 +22,21 @@ export default {
     Social,
   },
   methods: {
-    handleLogin(form) {
-      console.log(form);
+    ...mapActions("auth", ["setToken", "setIsLogin", "fetchUser"]),
+    async handleLogin(form) {
+      try {
+        const { data } = await this.$axios.post("/auth/login", form);
+        if (data) {
+          const { token } = data;
+          localStorage.setItem("token", token);
+          await this.fetchUser();
+          this.setToken(token);
+          this.setIsLogin(true);
+          this.$router.push("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

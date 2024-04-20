@@ -51,9 +51,11 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const loggedIn = localStorage.getItem("userToken");
+  const loggedIn = localStorage.getItem("token");
   if (!loggedIn && to.meta.auth && to.name !== "login") {
     next({ name: "login" });
+  } else if (loggedIn && !to.meta.auth) {
+    next({ name: "home" });
   } else next();
 });
 

@@ -7,18 +7,28 @@
 <script>
 import DefaultLayout from "./layouts/default.vue";
 import AuthLayout from "./layouts/auth.vue";
-import { mapState } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
     DefaultLayout,
     AuthLayout,
   },
-
+  async created() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.setToken(token);
+      this.setIsLogin(true);
+      await this.fetchUser();
+    }
+  },
   computed: {
-    ...mapState(["isLogin"]),
+    ...mapGetters("auth", ["isLogin"]),
     layout() {
       return this.isLogin ? "DefaultLayout" : "AuthLayout";
     },
+  },
+  methods: {
+    ...mapActions("auth", ["fetchUser", "setToken", "setIsLogin"]),
   },
 };
 </script>
