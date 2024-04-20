@@ -17,6 +17,7 @@
       <a-button
         class="w-full !font-semibold !text-xl"
         type="primary"
+        :loading="isLoadingBtn"
         @click="submit"
       >
         Login
@@ -25,6 +26,7 @@
   </a-form-model>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "LoginForm",
   data() {
@@ -50,6 +52,9 @@ export default {
         ],
       },
     };
+  },
+  computed: {
+    ...mapGetters(["isLoadingBtn"]),
   },
   methods: {
     submit() {

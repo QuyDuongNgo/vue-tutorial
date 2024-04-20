@@ -23,8 +23,10 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["setToken", "setIsLogin", "fetchUser"]),
+    ...mapActions(["setLoadingButton"]),
     async handleLogin(form) {
       try {
+        this.setLoadingButton(true);
         const { data } = await this.$axios.post("/auth/login", form);
         if (data) {
           const { token } = data;
@@ -33,9 +35,13 @@ export default {
           this.setToken(token);
           this.setIsLogin(true);
           this.$router.push("/");
+          this.$message.success("Login successfully!");
         }
       } catch (error) {
         console.log(error);
+        this.$message.error(error.response.data.message);
+      } finally {
+        this.setLoadingButton(false);
       }
     },
   },

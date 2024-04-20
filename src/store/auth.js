@@ -1,4 +1,4 @@
-import axiosInstance from "../plugins/axios";
+import axios from "../plugins/axios";
 
 const state = {
   isLogin: false,
@@ -30,7 +30,7 @@ const actions = {
   },
   async fetchUser({ commit }) {
     try {
-      const user = await axiosInstance.get("/auth/me");
+      const user = await axios.get("/auth/me");
       commit("SET_AUTH_USER", user.data);
     } catch (error) {
       console.log(error);

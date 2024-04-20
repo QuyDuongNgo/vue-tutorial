@@ -74,6 +74,7 @@ export default {
     async handleLogout() {
       await this.logout();
       this.$router.push("/login");
+      this.$message.success("Logout successfully!");
     },
   },
 };
