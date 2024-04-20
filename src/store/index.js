@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    isLoggin: false,
     counter: 1,
   },
   mutations: {
