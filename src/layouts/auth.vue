@@ -1,7 +1,9 @@
 <template>
   <div class="flex h-full w-full">
-    <div class="bg-blue-500 flex-1 flex justify-center items-center">
-      <div class="flex items-center justify-center fixed top-10 left-10">
+    <div
+      class="bg-blue-500 flex-1 flex justify-center items-center flex-col relative"
+    >
+      <div class="flex items-center justify-center absolute top-6 left-3">
         <div class="icon">
           <img src="@/assets/img/Exclude.png" alt="login" />
         </div>
@@ -20,7 +22,7 @@
           alt="Illustration"
         />
       </div>
-      <div class="content fixed">
+      <div class="mt-2.5 mb-2.5">
         <h3 class="flex items-center justify-center text-1">
           Customizable Multipurpose Dashboard
         </h3>
@@ -56,19 +58,16 @@ export default {};
   color: #fff;
 }
 .image-1 {
-  width: 524px;
-  height: 524px;
+  width: 100%;
 }
 .image-2 {
-  width: 367px;
-  height: 367px;
+  width: 80%;
 }
 .illus {
-  width: 343px;
-  height: 409px;
+  width: 80%;
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 10%;
+  left: 19%;
 }
 .content {
   bottom: 10%;
@@ -80,6 +79,7 @@ export default {};
   font-family: "Inter", sans-serif;
   color: #fff;
   line-height: 30px;
+  width: 100%;
 }
 .text-2 {
   font-size: 14px;
@@ -88,6 +88,7 @@ export default {};
   font-family: "Inter", sans-serif;
   color: #fff;
   line-height: 22.4px;
+  width: 100%;
 }
 .dot {
   width: 5px;
@@ -101,9 +102,5 @@ export default {};
 }
 .dot-2 {
   margin-right: 8px;
-}
-.dot-item {
-  position: fixed;
-  bottom: 5%;
 }
 </style>
